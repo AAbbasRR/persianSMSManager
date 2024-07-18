@@ -14,3 +14,16 @@ class SMSManager:
             raise ValueError(f"Invalid service name: {service_name}, available services: {list(self.services.keys())}")
 
         return service_class(user_mobile, **kwargs)
+
+    def send_request(self, endpoint, data):
+        return self.service.send_request(endpoint, data)
+
+    def send_message(self, message):
+        return self.service.send_message(message)
+
+    def send_auto_otp_code(self, footer=""):
+        return self.service.send_auto_otp_code(footer)
+
+    def check_auto_otp_code(self, otp_code):
+        return self.service.check_auto_otp_code(otp_code)
+
