@@ -8,7 +8,7 @@ class BaseSMSService(ABC):
         user_mobile (str): The mobile number of the user.
     """
 
-    def __init__(self, user_mobile: str, **kwargs: Any) -> None:
+    def __init__(self, user_mobile: str, **kwargs: any) -> None:
         """
         Initializes the BaseSMSService with the user's mobile number.
 
