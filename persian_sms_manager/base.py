@@ -1,8 +1,6 @@
-from abc import ABC, abstractmethod
-
-class BaseSMSService(ABC):
+class BaseSMSService:
     """
-    An abstract base class for SMS services.
+    An base class for SMS services.
 
     Attributes:
         user_mobile (str): The mobile number of the user.
@@ -18,7 +16,6 @@ class BaseSMSService(ABC):
         """
         self.user_mobile: str = user_mobile
 
-    @abstractmethod
     def send_message(self, message: str) -> bool:
         """
         Send a message to the user's mobile number.
@@ -31,7 +28,6 @@ class BaseSMSService(ABC):
         """
         raise NotImplementedError("This method should be overridden by subclasses")
 
-    @abstractmethod
     def send_otp_code(self, title_type: str) -> bool:
         """
         Send an OTP code with a specific title type to the user's mobile number.
@@ -44,7 +40,6 @@ class BaseSMSService(ABC):
         """
         raise NotImplementedError("This method should be overridden by subclasses")
 
-    @abstractmethod
     def check_otp_code_existed(self) -> bool:
         """
         Check if an OTP code exists for the user's mobile number.
@@ -54,7 +49,6 @@ class BaseSMSService(ABC):
         """
         raise NotImplementedError("This method should be overridden by subclasses")
 
-    @abstractmethod
     def send_auto_otp_code(self) -> bool:
         """
         Send an auto-generated OTP code to the user's mobile number.
@@ -64,7 +58,6 @@ class BaseSMSService(ABC):
         """
         raise NotImplementedError("This method should be overridden by subclasses")
 
-    @abstractmethod
     def check_auto_otp_code(self, otp_code: str) -> bool:
         """
         Verify the auto-generated OTP code sent to the user's mobile number.

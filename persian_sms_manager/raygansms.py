@@ -3,6 +3,7 @@ from typing import Optional, Union
 
 from .base import BaseSMSService
 
+
 class RayganSMSService(BaseSMSService):
     """
     A service for sending SMS messages using the Raygan SMS API.
@@ -12,8 +13,8 @@ class RayganSMSService(BaseSMSService):
         username (str): API username for authentication.
         password (str): API password for authentication.
     """
-    
-    api_url: str = "https://raygansms.com/"
+
+    api_url = "https://raygansms.com/"
 
     def __init__(self, user_mobile: str, username: str, password: str) -> None:
         """
@@ -44,7 +45,6 @@ class RayganSMSService(BaseSMSService):
             "Password": self.password,
         })
         response = requests.post(f"{self.api_url}{endpoint}", data=data)
-        response.raise_for_status()
         return response.status_code == 200
 
     def send_message(self, message: str) -> bool:
@@ -94,5 +94,4 @@ class RayganSMSService(BaseSMSService):
             "Code": str(otp_code),
         }
         return self.send_request("CheckSendCode.ashx", data)
-
 
