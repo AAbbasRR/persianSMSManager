@@ -13,8 +13,7 @@ class SMSManager:
         "raygansms": RayganSMSService
     }
 
-    @staticmethod
-    def get_service(service_name: str, user_mobile: str, **kwargs: Any) -> RayganSMSService:
+    def __new__(cls, service_name: str, user_mobile: str, **kwargs: Any) -> RayganSMSService:
         """
         Retrieves an instance of the specified SMS service based on the service name.
 
@@ -29,9 +28,10 @@ class SMSManager:
         Raises:
             ValueError: If the provided service name is invalid.
         """
-        service_class = SMSManager.services.get(service_name.lower())
+        service_class = cls.services.get(service_name.lower())
         if not service_class:
             raise ValueError(f"Invalid service name: {service_name}. Available services: {list(SMSManager.services.keys())}")
 
         return service_class(user_mobile, **kwargs)
+
 

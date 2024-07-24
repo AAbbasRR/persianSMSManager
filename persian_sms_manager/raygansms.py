@@ -43,14 +43,9 @@ class RayganSMSService(BaseSMSService):
             "UserName": self.username,
             "Password": self.password,
         })
-        try:
-            response = requests.post(f"{self.api_url}{endpoint}", data=data)
-            response.raise_for_status()
-            return response.status_code == 200
-        except requests.RequestException as e:
-            # Optionally log the exception or handle it as needed
-            print(f"An error occurred: {e}")
-            return False
+        response = requests.post(f"{self.api_url}{endpoint}", data=data)
+        response.raise_for_status()
+        return response.status_code == 200
 
     def send_message(self, message: str) -> bool:
         """
@@ -99,4 +94,5 @@ class RayganSMSService(BaseSMSService):
             "Code": str(otp_code),
         }
         return self.send_request("CheckSendCode.ashx", data)
+
 
